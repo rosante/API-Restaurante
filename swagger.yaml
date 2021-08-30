@@ -1,0 +1,166 @@
+swagger: "2.0"
+info:
+  description: "Restaurante - API de Pedidos"
+  version: "1.0.0"
+  title: "API de Pedidos"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "no-reply@ruzzante.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "com.ruzzante.arquiteturaexagonal"
+basePath: "/api"
+tags:
+- name: "Pedidos"
+  description: "Restaurante - API de Pedidos"
+
+schemes:
+- "https"
+- "http"
+paths:
+  /Pedido:
+    get:
+      tags:
+      - "Pedidos"
+      summary: "Recebe lista de todos pedidos"
+      description: "Recebe lista de todos pedidos"
+      responses:
+        "200":
+          description: "Lista de pedidos"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/Pedido'
+  
+    post:
+      tags:
+      - "Pedidos"
+      summary: "Adiciona um pedido"
+      parameters:
+      - in: body
+        name: "body"
+        description: "Objeto pedido em formato Json"
+        required: true
+        schema:
+          $ref: '#/definitions/Pedido'
+      responses:
+        '201':
+          description: "pedido criado"
+       
+    put:
+      tags:
+      - "Pedidos"
+      summary: "Atualiza um pedido"
+      description: ""
+      operationId: "updatePedido"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: body
+        name: "body"
+        description: "Objeto pedido em formato Json"
+        required: true
+        schema:
+          $ref: '#/definitions/Pedido'
+      responses:
+        "400":
+          description: "Id informado inválido"
+        "404":
+          description: "pedido não encontrado"
+        "405":
+          description: "Exceção de validação"
+              
+  /Pedido/Mesa:
+    get:
+      tags:
+        - "Pedidos"
+      summary: "Recebe lista de todos pedidos para mesa"
+      description: "Recebe lista de todos pedidos para mesa"
+      responses:
+        "200":
+          description: "Lista de pedidos"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/Pedido'
+
+  /Pedido/Entrega:
+    get:
+      tags:
+        - "Pedidos"
+      summary: "Recebe lista de todos pedidos para entrega"
+      description: "Recebe lista de todos pedidos para entrega"
+      responses:
+        "200":
+          description: "Lista de pedidos"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/Pedido'
+
+  /Pedido/Entregue:
+    get:
+      tags:
+        - "Pedidos"
+      summary: "Recebe lista de todos pedidos entregues"
+      description: "Recebe lista de todos pedidos entregues"
+      responses:
+        "200":
+          description: "Lista de pedidos"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/Pedido'
+
+  /Pedido/{id}:
+    delete:
+      tags:
+      - "Pedidos"
+      parameters:
+        - name: id
+          in: path
+          description: Pedido ID
+          required: true
+          type: integer
+      summary: "Remove pedido solicitado"
+      description: "Remove pedido solicitado"
+      responses:
+        '204':
+          description: "pedido deletado"
+        "400":
+          description: "Id informado inválido"
+        "404":
+          description: "pedido não encontrado"
+              
+
+definitions:
+  
+  Pedido:
+    type: "object"
+    properties:
+      id:
+        type: "number"
+      cliente:
+        type: "string"
+      mesa:
+        type: "boolean"
+      endereco:
+        type: "string"
+      pedido:
+        type: "string"
+      horario:
+        type: "string"
+      descricao:
+        type: "string"
+      entregue:
+        type: "boolean"
+
+    
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
