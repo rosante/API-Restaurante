@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Pedidos</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col shadow-sm">
+            <h1 class="text-center">Mesa</h1>
+            <table class="table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th>Cliente</th><th>Pedido</th><th>Descricao</th><th>Horario</th>
+                    </tr>
+                </thead>
+                <tbody th:each="p : ${pedidos}">
+                    <tr th:if="${p.mesa && !p.entregue}">
+                        <td th:text="${p.cliente}"></td>
+                        <td th:text="${p.pedido}"></td>
+                        <td th:text="${p.descricao}"></td>
+                        <td th:text="${p.horario}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col shadow-sm">
+            <h1 class="text-center">Entrega</h1>
+            <table class="table-sm table-hover">
+                <thead>
+                <tr>
+                    <th>Cliente</th><th>Pedido</th><th>Descricao</th><th>Horario</th><th>Endereco</th>
+                </tr>
+                </thead>
+                <tbody th:each="p : ${pedidos}">
+                <tr th:if="${!p.mesa && !p.entregue}">
+                    <td th:text="${p.cliente}"></td>
+                    <td th:text="${p.pedido}"></td>
+                    <td th:text="${p.descricao}"></td>
+                    <td th:text="${p.horario}"></td>
+                    <td th:text="${p.endereco}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+     $(document).ready(function () {
+      setTimeout(function () {
+        location.reload(true);
+      }, 5000);
+    });
+    </script>
+</body>
+</html>
+
